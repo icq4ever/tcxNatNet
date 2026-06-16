@@ -5,7 +5,7 @@ void tcApp::setup() {
     setWindowTitle("tcxNatNet - natnet2osc bridge");
 
     natnet.setup("127.0.0.1");      // Motive server ip
-    natnet.setScale(1000.0f);       // metres -> mm
+    natnet.setScale(100.0f);        // metres -> cm (matches the original natnet2osc)
     osc.setup(oscHost, oscPort);    // OSC destination
 }
 

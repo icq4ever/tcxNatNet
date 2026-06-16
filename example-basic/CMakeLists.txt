@@ -10,6 +10,3 @@ endif()
 include(${TRUSSC_DIR}/cmake/trussc_app.cmake)
 
 trussc_app()
-
-# Windows: auto-copy NatNetLib.dll next to the exe (no-op elsewhere)
-tcxnatnet_copy_runtime(${PROJECT_NAME})

@@ -16,22 +16,17 @@ The NatNet SDK is governed by the **OptiTrack Plugins EULA** and cannot be redis
    (or reconfigure with `-DNATNET_SDK_ROOT=/path/to/NatNetSDK`)
 CMake prints download/placement instructions if the SDK is missing.
 
-### Windows: `NatNetLib.dll` next to the `.exe` (automated)
+### Windows: `NatNetLib.dll` next to the `.exe`
 
 On Windows the build links `NatNetLib.lib`, but `NatNetLib.dll` is loaded **at
-runtime** from the executable's folder. The bundled examples copy it automatically
-via a post-build step, so `trusscli build` "just works".
+runtime** from the executable's folder. The addon copies it there **automatically**
+via a post-build step — nothing to add to your app's `CMakeLists.txt` (the copy
+lives in the addon's own CMake, so it survives `trusscli update` regenerating the
+app CMakeLists). On Linux/macOS this is a no-op (the build embeds an rpath to
+`libNatNet.so`).
 
-For **your own app**, add one line to its `CMakeLists.txt` after `trussc_app()`:
-
-```cmake
-trussc_app()
-tcxnatnet_copy_runtime(${PROJECT_NAME})   # copies NatNetLib.dll beside the exe on Windows
-```
-
-`tcxnatnet_copy_runtime(<exe-target>)` is provided by the addon; it's a no-op on
-Linux/macOS (there the build embeds an rpath to `libNatNet.so`). If you'd rather not
-use it, copy the DLL by hand once per build folder:
+Requires CMake ≥ 3.19. On older CMake — or if the auto-copy ever misses — copy the
+DLL by hand, once per build output folder:
 
 ```
 copy libs\natnet\lib\x64\NatNetLib.dll  <your-app>\bin\
@@ -48,7 +43,7 @@ tcx::NatNet natnet;
 
 void tcApp::setup() {
     natnet.setup("192.168.0.1");   // Motive server ip; optional 2nd arg = local NIC ip
-    natnet.setScale(100.0f);      // NatNet is metres -> mm
+    natnet.setScale(100.0f);      // NatNet is metres -> cm
 }
 
 void tcApp::update() { natnet.update(); }   // non-blocking; once per frame

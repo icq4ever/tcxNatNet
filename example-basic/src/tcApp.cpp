@@ -6,10 +6,10 @@ void tcApp::setup() {
     // Motive server ip. Optionally pass this machine's NIC ip as 2nd arg.
     natnet.setup("127.0.0.1");
 
-    // NatNet streams metres. Scale to mm so the scene matches tcxQTMRT units.
-    natnet.setScale(1000.0f);
+    // NatNet streams metres. Scale to centimetres.
+    natnet.setScale(100.0f);
 
-    cam.setDistance(2500);
+    cam.setDistance(250);
     cam.setTarget(0, 0, 0);
     cam.setElevation(20);
     cam.enableMouseInput();
@@ -25,17 +25,17 @@ void tcApp::draw() {
     cam.begin();
 
     setColor(0.4f);
-    drawLine(Vec3(0, 0, 0), Vec3(500, 0, 0));
-    drawLine(Vec3(0, 0, 0), Vec3(0, 500, 0));
-    drawLine(Vec3(0, 0, 0), Vec3(0, 0, 500));
+    drawLine(Vec3(0, 0, 0), Vec3(50, 0, 0));
+    drawLine(Vec3(0, 0, 0), Vec3(0, 50, 0));
+    drawLine(Vec3(0, 0, 0), Vec3(0, 0, 50));
 
     setColor(1.0f, 1.0f, 1.0f);
     for (size_t i = 0; i < natnet.getNumMarker(); i++)
-        drawBox(natnet.getMarker(i), 15);
+        drawBox(natnet.getMarker(i), 1.5f);
 
     setColor(1.0f, 1.0f, 1.0f, 0.35f);
     for (size_t i = 0; i < natnet.getNumUnlabeledMarker(); i++)
-        drawBox(natnet.getUnlabeledMarker(i), 15);
+        drawBox(natnet.getUnlabeledMarker(i), 1.5f);
 
     for (size_t i = 0; i < natnet.getNumRigidBody(); i++) {
         const auto& rb = natnet.getRigidBodyAt(i);
@@ -46,7 +46,7 @@ void tcApp::draw() {
         Vec3 ax(M.m[0], M.m[4], M.m[8]);
         Vec3 ay(M.m[1], M.m[5], M.m[9]);
         Vec3 az(M.m[2], M.m[6], M.m[10]);
-        float len = 120.0f;
+        float len = 12.0f;
 
         setColor(1.0f, 0.2f, 0.2f); drawLine(o, o + ax * len);
         setColor(0.2f, 1.0f, 0.2f); drawLine(o, o + ay * len);
