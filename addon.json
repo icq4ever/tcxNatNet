@@ -1,0 +1,8 @@
+{
+  "description": "OptiTrack NatNet protocol receiver (wraps the official NatNet SDK; BYO-SDK) — 6DOF rigid bodies + 3D markers",
+  "author": "icq4ever",
+  "license": "MIT",
+  "category": "hardware",
+  "keywords": ["optitrack", "natnet", "motive", "mocap", "motion capture", "6dof", "rigid body"],
+  "platforms": ["windows", "linux"]
+}

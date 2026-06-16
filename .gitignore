@@ -1,0 +1,16 @@
+# OptiTrack NatNet SDK is NOT redistributable (EULA). Users provide their own.
+# (Only relevant on the sdk-wrapper branch; harmless on main/clean-room.)
+libs/natnet/include/
+libs/natnet/lib/
+
+# Build artifacts
+**/build*/
+**/bin/*
+!**/bin/data/
+*.o
+
+# IDE / OS
+.vscode/
+.cache/
+.DS_Store
+Thumbs.db
