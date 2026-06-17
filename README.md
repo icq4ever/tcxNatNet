@@ -1,6 +1,8 @@
 # tcxNatNet
 
-TrussC addon for receiving motion-capture data from **OptiTrack Motive** over the **NatNet** protocol. Wraps OptiTrack's official **NatNet SDK** (`NatNetClient`) behind a small `tcx::NatNet` class — 6DOF rigid bodies + 3D markers, full NatNet 4.x support.
+TrussC addon for receiving motion-capture data from **OptiTrack Motive** over the **NatNet** protocol. 
+
+Wraps OptiTrack's official **NatNet SDK** (`NatNetClient`) behind a small `tcx::NatNet` class — 6DOF rigid bodies + 3D markers, full NatNet 4.x support.
 
 ## Bring your own SDK (this addon does not ship it)
 
@@ -31,8 +33,6 @@ DLL by hand, once per build output folder:
 ```
 copy libs\natnet\lib\x64\NatNetLib.dll  <your-app>\bin\
 ```
-
-> Why this layout? The protocol could be reimplemented clean-room (that's what the MIT `ofxNatNet` did, limited to ~NatNet 3.1). Wrapping the official SDK instead gives full, maintained 4.x support — at the cost of the one-time SDK download. The addon's own code stays MIT and ships no OptiTrack files.
 
 ## Usage
 
